@@ -1,0 +1,44 @@
+
+<div *ngIf="artical">
+    <h2><span jhiTranslate="manleApp.artical.detail.title">Artical</span> {{artical.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="manleApp.artical.title">Title</span></dt>
+        <dd>
+            <span>{{artical.title}}</span>
+        </dd>
+        <dt><span jhiTranslate="manleApp.artical.content">Content</span></dt>
+        <dd>
+            <span>{{artical.content}}</span>
+        </dd>
+        <dt><span jhiTranslate="manleApp.artical.figure">Figure</span></dt>
+        <dd>
+            <span>{{artical.figure}}</span>
+        </dd>
+        <dt><span jhiTranslate="manleApp.artical.creatDate">Creat Date</span></dt>
+        <dd>
+            <span>{{artical.creatDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="manleApp.artical.clientUser">Client User</span></dt>
+        <dd>
+            <div *ngIf="artical.clientUserId">
+                <a [routerLink]="['/client-user', artical.clientUserId]">{{artical.clientUserId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'artical/'+ artical.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

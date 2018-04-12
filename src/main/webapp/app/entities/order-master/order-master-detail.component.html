@@ -1,0 +1,50 @@
+
+<div *ngIf="orderMaster">
+    <h2><span jhiTranslate="manleApp.orderMaster.detail.title">Order Master</span> {{orderMaster.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="manleApp.orderMaster.orderNumber">Order Number</span></dt>
+        <dd>
+            <span>{{orderMaster.orderNumber}}</span>
+        </dd>
+        <dt><span jhiTranslate="manleApp.orderMaster.totalPrices">Total Prices</span></dt>
+        <dd>
+            <span>{{orderMaster.totalPrices}}</span>
+        </dd>
+        <dt><span jhiTranslate="manleApp.orderMaster.totalQuanity">Total Quanity</span></dt>
+        <dd>
+            <span>{{orderMaster.totalQuanity}}</span>
+        </dd>
+        <dt><span jhiTranslate="manleApp.orderMaster.orderStatus">Order Status</span></dt>
+        <dd>
+            <span jhiTranslate="{{'manleApp.OrderStatus.' + orderMaster.orderStatus}}">{{orderMaster.orderStatus}}</span>
+        </dd>
+        <dt><span jhiTranslate="manleApp.orderMaster.address">Address</span></dt>
+        <dd>
+            <div *ngIf="orderMaster.addressId">
+                <a [routerLink]="['/address', orderMaster.addressId]">{{orderMaster.addressId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="manleApp.orderMaster.clientUser">Client User</span></dt>
+        <dd>
+            <div *ngIf="orderMaster.clientUserId">
+                <a [routerLink]="['/client-user', orderMaster.clientUserId]">{{orderMaster.clientUserId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'order-master/'+ orderMaster.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

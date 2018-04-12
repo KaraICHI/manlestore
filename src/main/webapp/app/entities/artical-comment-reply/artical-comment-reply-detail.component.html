@@ -1,0 +1,42 @@
+
+<div *ngIf="articalCommentReply">
+    <h2><span jhiTranslate="manleApp.articalCommentReply.detail.title">Artical Comment Reply</span> {{articalCommentReply.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="manleApp.articalCommentReply.content">Content</span></dt>
+        <dd>
+            <span>{{articalCommentReply.content}}</span>
+        </dd>
+        <dt><span jhiTranslate="manleApp.articalCommentReply.creatDate">Creat Date</span></dt>
+        <dd>
+            <span>{{articalCommentReply.creatDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="manleApp.articalCommentReply.articalComment">Artical Comment</span></dt>
+        <dd>
+            <div *ngIf="articalCommentReply.articalCommentId">
+                <a [routerLink]="['/artical-comment', articalCommentReply.articalCommentId]">{{articalCommentReply.articalCommentId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="manleApp.articalCommentReply.clientUser">Client User</span></dt>
+        <dd>
+            <div *ngIf="articalCommentReply.clientUserId">
+                <a [routerLink]="['/client-user', articalCommentReply.clientUserId]">{{articalCommentReply.clientUserId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'artical-comment-reply/'+ articalCommentReply.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

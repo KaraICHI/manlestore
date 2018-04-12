@@ -1,0 +1,45 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "address",
+            "otherEntityName": "address",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "orderMaster"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "clientUser",
+            "otherEntityName": "clientUser",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "orderNumber",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "totalPrices",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "totalQuanity",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "orderStatus",
+            "fieldType": "OrderStatus",
+            "fieldValues": "WAIT_TO_PAY,WAIT_TO_SEND,WAIT_TO_TAKE,DONE,WAIT_TO_COMMENT"
+        }
+    ],
+    "changelogDate": "20180408085327",
+    "javadoc": "The Employee entity.",
+    "entityTableName": "order_master",
+    "dto": "mapstruct",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false
+}

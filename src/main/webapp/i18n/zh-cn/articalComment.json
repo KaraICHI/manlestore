@@ -1,0 +1,24 @@
+
+{
+    "manleApp": {
+        "articalComment" : {
+            "home": {
+                "title": "Artical Comments",
+                "createLabel": "创建新 Artical Comment",
+                "createOrEditLabel": "创建或编辑 Artical Comment"
+            },
+            "created": "Artical Comment {{ param }} 创建成功",
+            "updated": "Artical Comment {{ param }} 更新成功",
+            "deleted": "Artical Comment {{ param }} 删除成功",
+            "delete": {
+                "question": "你确定要删除 Artical Comment {{ id }} 吗？"
+            },
+            "detail": {
+                "title": "Artical Comment"
+            },
+            "content": "Content",
+            "artical": "Artical",
+            "clientUser": "Client User"
+        }
+    }
+}

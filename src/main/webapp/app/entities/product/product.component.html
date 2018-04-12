@@ -1,0 +1,89 @@
+<div>
+    <h2>
+        <span jhiTranslate="manleApp.product.home.title">Products</span>
+        <button class="btn btn-primary float-right jh-create-entity create-product" [routerLink]="['/', { outlets: { popup: ['product-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="manleApp.product.home.createLabel">
+            Create new Product
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="products">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="figure"><span jhiTranslate="manleApp.product.figure">Figure</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="productName"><span jhiTranslate="manleApp.product.productName">Product Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="coverPrice"><span jhiTranslate="manleApp.product.coverPrice">Cover Price</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="originPrice"><span jhiTranslate="manleApp.product.originPrice">Origin Price</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="produceDate"><span jhiTranslate="manleApp.product.produceDate">Produce Date</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="period"><span jhiTranslate="manleApp.product.period">Period</span> <span class="fa fa-sort"></span></th>
+
+            <th jhiSortBy="brand"><span jhiTranslate="manleApp.product.brand">Brand</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="supply"><span jhiTranslate="manleApp.product.supply">Supply</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="brief"><span jhiTranslate="manleApp.product.brief">Brief</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="description"><span jhiTranslate="manleApp.product.description">Description</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="categoryCategoryName"><span jhiTranslate="manleApp.product.category">Category</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="themeThemeName"><span jhiTranslate="manleApp.product.theme">Theme</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let product of products ;trackBy: trackId">
+                <td><a [routerLink]="['../product', product.id ]">{{product.id}}</a></td>
+                <td><img src="{{imgPath+product.figure}}" style="height: 40px;width: 40px;"></td>
+                <td>{{product.productName}}</td>
+                <td>{{product.coverPrice}}</td>
+                <td>{{product.originPrice}}</td>
+                <td>{{product.produceDate | date:'mediumDate'}}</td>
+                <td>{{product.period}}</td>
+                <td>{{product.brand}}</td>
+                <td>{{product.supply}}</td>
+                <td>{{product.brief}}</td>
+                <td>{{product.description}}</td>
+                <td>
+                    <div *ngIf="product.categoryId">
+                        <a [routerLink]="['../category', product.categoryId  ]" >{{product.categoryCategoryName}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="product.themeId">
+                        <a [routerLink]="['../theme', product.themeId  ]" >{{product.themeThemeName}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../product', product.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'product/'+ product.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'product/'+ product.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

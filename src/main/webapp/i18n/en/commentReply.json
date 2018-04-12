@@ -1,0 +1,25 @@
+
+{
+    "manleApp": {
+        "commentReply" : {
+            "home": {
+                "title": "Comment Replies",
+                "createLabel": "Create a new Comment Reply",
+                "createOrEditLabel": "Create or edit a Comment Reply"
+            },
+            "created": "A new Comment Reply is created with identifier {{ param }}",
+            "updated": "A Comment Reply is updated with identifier {{ param }}",
+            "deleted": "A Comment Reply is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Comment Reply {{ id }}?"
+            },
+            "detail": {
+                "title": "Comment Reply"
+            },
+            "content": "Content",
+            "creatDate": "Creat Date",
+            "orderComment": "Order Comment",
+            "clientUser": "Client User"
+        }
+    }
+}

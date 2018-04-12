@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity ArticalCommentReply.
+    -->
+    <changeSet id="20180408085321-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="artical_comment_id"
+                                 baseTableName="artical_comment_reply"
+                                 constraintName="fk_artical_comment_reply_artical_comment_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="artical_comment"/>
+
+        <addForeignKeyConstraint baseColumnNames="client_user_id"
+                                 baseTableName="artical_comment_reply"
+                                 constraintName="fk_artical_comment_reply_client_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="client_user"/>
+
+    </changeSet>
+</databaseChangeLog>

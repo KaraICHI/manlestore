@@ -1,0 +1,75 @@
+
+<div *ngIf="product">
+    <h2><span jhiTranslate="manleApp.product.detail.title">Product</span> {{product.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="manleApp.product.figure">Figure</span></dt>
+        <dd>
+            <span><img src="{{imgPath+product.figure}}" ></span>
+        </dd>
+        <dt><span jhiTranslate="manleApp.product.productName">Product Name</span></dt>
+        <dd>
+            <span>{{product.productName}}</span>
+        </dd>
+        <dt><span jhiTranslate="manleApp.product.coverPrice">Cover Price</span></dt>
+        <dd>
+            <span>{{product.coverPrice}}</span>
+        </dd>
+        <dt><span jhiTranslate="manleApp.product.originPrice">Origin Price</span></dt>
+        <dd>
+            <span>{{product.originPrice}}</span>
+        </dd>
+        <dt><span jhiTranslate="manleApp.product.produceDate">Produce Date</span></dt>
+        <dd>
+            <span>{{product.produceDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="manleApp.product.period">Period</span></dt>
+        <dd>
+            <span>{{product.period}}</span>
+        </dd>
+
+        <dt><span jhiTranslate="manleApp.product.brand">Brand</span></dt>
+        <dd>
+            <span>{{product.brand}}</span>
+        </dd>
+        <dt><span jhiTranslate="manleApp.product.supply">Supply</span></dt>
+        <dd>
+            <span>{{product.supply}}</span>
+        </dd>
+        <dt><span jhiTranslate="manleApp.product.brief">Brief</span></dt>
+        <dd>
+            <span>{{product.brief}}</span>
+        </dd>
+        <dt><span jhiTranslate="manleApp.product.description">Description</span></dt>
+        <dd>
+            <span>{{product.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="manleApp.product.category">Category</span></dt>
+        <dd>
+            <div *ngIf="product.categoryId">
+                <a [routerLink]="['/category', product.categoryId]">{{product.categoryCategoryName}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="manleApp.product.theme">Theme</span></dt>
+        <dd>
+            <div *ngIf="product.themeId">
+                <a [routerLink]="['/theme', product.themeId]">{{product.themeThemeName}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'product/'+ product.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

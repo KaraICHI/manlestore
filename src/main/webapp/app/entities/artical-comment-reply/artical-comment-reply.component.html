@@ -1,0 +1,72 @@
+<div>
+    <h2>
+        <span jhiTranslate="manleApp.articalCommentReply.home.title">Artical Comment Replies</span>
+        <button class="btn btn-primary float-right jh-create-entity create-artical-comment-reply" [routerLink]="['/', { outlets: { popup: ['artical-comment-reply-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="manleApp.articalCommentReply.home.createLabel">
+            Create new Artical Comment Reply
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="articalCommentReplies">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="content"><span jhiTranslate="manleApp.articalCommentReply.content">Content</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="creatDate"><span jhiTranslate="manleApp.articalCommentReply.creatDate">Creat Date</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="articalCommentId"><span jhiTranslate="manleApp.articalCommentReply.articalComment">Artical Comment</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="clientUserId"><span jhiTranslate="manleApp.articalCommentReply.clientUser">Client User</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let articalCommentReply of articalCommentReplies ;trackBy: trackId">
+                <td><a [routerLink]="['../artical-comment-reply', articalCommentReply.id ]">{{articalCommentReply.id}}</a></td>
+                <td>{{articalCommentReply.content}}</td>
+                <td>{{articalCommentReply.creatDate | date:'mediumDate'}}</td>
+                <td>
+                    <div *ngIf="articalCommentReply.articalCommentId">
+                        <a [routerLink]="['../artical-comment', articalCommentReply.articalCommentId  ]" >{{articalCommentReply.articalCommentId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="articalCommentReply.clientUserId">
+                        <a [routerLink]="['../client-user', articalCommentReply.clientUserId  ]" >{{articalCommentReply.clientUserId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../artical-comment-reply', articalCommentReply.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'artical-comment-reply/'+ articalCommentReply.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'artical-comment-reply/'+ articalCommentReply.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

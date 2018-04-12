@@ -1,0 +1,64 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myOrderMasterLabel" jhiTranslate="manleApp.orderMaster.home.createOrEditLabel">Create or edit a Order Master</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!orderMaster.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="orderMaster.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="manleApp.orderMaster.orderNumber" for="field_orderNumber">Order Number</label>
+            <input type="text" class="form-control" name="orderNumber" id="field_orderNumber"
+                [(ngModel)]="orderMaster.orderNumber" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="manleApp.orderMaster.totalPrices" for="field_totalPrices">Total Prices</label>
+            <input type="number" class="form-control" name="totalPrices" id="field_totalPrices"
+                [(ngModel)]="orderMaster.totalPrices" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="manleApp.orderMaster.totalQuanity" for="field_totalQuanity">Total Quanity</label>
+            <input type="number" class="form-control" name="totalQuanity" id="field_totalQuanity"
+                [(ngModel)]="orderMaster.totalQuanity" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="manleApp.orderMaster.orderStatus" for="field_orderStatus">Order Status</label>
+            <select class="form-control" name="orderStatus" [(ngModel)]="orderMaster.orderStatus" id="field_orderStatus" >
+                <option value="WAIT_TO_PAY">{{'manleApp.OrderStatus.WAIT_TO_PAY' | translate}}</option>
+                <option value="WAIT_TO_SEND">{{'manleApp.OrderStatus.WAIT_TO_SEND' | translate}}</option>
+                <option value="WAIT_TO_TAKE">{{'manleApp.OrderStatus.WAIT_TO_TAKE' | translate}}</option>
+                <option value="DONE">{{'manleApp.OrderStatus.DONE' | translate}}</option>
+                <option value="WAIT_TO_COMMENT">{{'manleApp.OrderStatus.WAIT_TO_COMMENT' | translate}}</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="manleApp.orderMaster.address" for="field_address">Address</label>
+            <select class="form-control" id="field_address" name="address" [(ngModel)]="orderMaster.addressId">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="addressOption.id" *ngFor="let addressOption of addresses; trackBy: trackAddressById">{{addressOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="manleApp.orderMaster.clientUser" for="field_clientUser">Client User</label>
+            <select class="form-control" id="field_clientUser" name="clientUser" [(ngModel)]="orderMaster.clientUserId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="clientUserOption.id" *ngFor="let clientUserOption of clientusers; trackBy: trackClientUserById">{{clientUserOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

@@ -1,0 +1,59 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myOrderItemLabel" jhiTranslate="manleApp.orderItem.home.createOrEditLabel">Create or edit a Order Item</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!orderItem.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="orderItem.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="manleApp.orderItem.productName" for="field_productName">Product Name</label>
+            <input type="text" class="form-control" name="productName" id="field_productName"
+                [(ngModel)]="orderItem.productName" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="manleApp.orderItem.productPrice" for="field_productPrice">Product Price</label>
+            <input type="number" class="form-control" name="productPrice" id="field_productPrice"
+                [(ngModel)]="orderItem.productPrice" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="manleApp.orderItem.productQuantity" for="field_productQuantity">Product Quantity</label>
+            <input type="number" class="form-control" name="productQuantity" id="field_productQuantity"
+                [(ngModel)]="orderItem.productQuantity" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="manleApp.orderItem.productIcon" for="field_productIcon">Product Icon</label>
+            <input type="text" class="form-control" name="productIcon" id="field_productIcon"
+                [(ngModel)]="orderItem.productIcon" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="manleApp.orderItem.orderMaster" for="field_orderMaster">Order Master</label>
+            <select class="form-control" id="field_orderMaster" name="orderMaster" [(ngModel)]="orderItem.orderMasterId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="orderMasterOption.id" *ngFor="let orderMasterOption of ordermasters; trackBy: trackOrderMasterById">{{orderMasterOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="manleApp.orderItem.product" for="field_product">Product</label>
+            <select class="form-control" id="field_product" name="product" [(ngModel)]="orderItem.productId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="productOption.id" *ngFor="let productOption of products; trackBy: trackProductById">{{productOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

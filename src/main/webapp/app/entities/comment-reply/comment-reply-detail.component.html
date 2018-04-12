@@ -1,0 +1,42 @@
+
+<div *ngIf="commentReply">
+    <h2><span jhiTranslate="manleApp.commentReply.detail.title">Comment Reply</span> {{commentReply.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="manleApp.commentReply.content">Content</span></dt>
+        <dd>
+            <span>{{commentReply.content}}</span>
+        </dd>
+        <dt><span jhiTranslate="manleApp.commentReply.creatDate">Creat Date</span></dt>
+        <dd>
+            <span>{{commentReply.creatDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="manleApp.commentReply.orderComment">Order Comment</span></dt>
+        <dd>
+            <div *ngIf="commentReply.orderCommentId">
+                <a [routerLink]="['/order-comment', commentReply.orderCommentId]">{{commentReply.orderCommentId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="manleApp.commentReply.clientUser">Client User</span></dt>
+        <dd>
+            <div *ngIf="commentReply.clientUserId">
+                <a [routerLink]="['/client-user', commentReply.clientUserId]">{{commentReply.clientUserId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'comment-reply/'+ commentReply.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

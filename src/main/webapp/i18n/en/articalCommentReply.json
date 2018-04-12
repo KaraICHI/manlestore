@@ -1,0 +1,25 @@
+
+{
+    "manleApp": {
+        "articalCommentReply" : {
+            "home": {
+                "title": "Artical Comment Replies",
+                "createLabel": "Create a new Artical Comment Reply",
+                "createOrEditLabel": "Create or edit a Artical Comment Reply"
+            },
+            "created": "A new Artical Comment Reply is created with identifier {{ param }}",
+            "updated": "A Artical Comment Reply is updated with identifier {{ param }}",
+            "deleted": "A Artical Comment Reply is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Artical Comment Reply {{ id }}?"
+            },
+            "detail": {
+                "title": "Artical Comment Reply"
+            },
+            "content": "Content",
+            "creatDate": "Creat Date",
+            "articalComment": "Artical Comment",
+            "clientUser": "Client User"
+        }
+    }
+}

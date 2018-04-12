@@ -1,0 +1,25 @@
+
+{
+    "manleApp": {
+        "commentReply" : {
+            "home": {
+                "title": "Comment Replies",
+                "createLabel": "创建新 Comment Reply",
+                "createOrEditLabel": "创建或编辑 Comment Reply"
+            },
+            "created": "Comment Reply {{ param }} 创建成功",
+            "updated": "Comment Reply {{ param }} 更新成功",
+            "deleted": "Comment Reply {{ param }} 删除成功",
+            "delete": {
+                "question": "你确定要删除 Comment Reply {{ id }} 吗？"
+            },
+            "detail": {
+                "title": "Comment Reply"
+            },
+            "content": "Content",
+            "creatDate": "Creat Date",
+            "orderComment": "Order Comment",
+            "clientUser": "Client User"
+        }
+    }
+}

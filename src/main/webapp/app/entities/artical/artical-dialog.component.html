@@ -1,0 +1,57 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myArticalLabel" jhiTranslate="manleApp.artical.home.createOrEditLabel">Create or edit a Artical</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!artical.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="artical.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="manleApp.artical.title" for="field_title">Title</label>
+            <input type="text" class="form-control" name="title" id="field_title"
+                [(ngModel)]="artical.title" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="manleApp.artical.content" for="field_content">Content</label>
+            <input type="text" class="form-control" name="content" id="field_content"
+                [(ngModel)]="artical.content" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="manleApp.artical.figure" for="field_figure">Figure</label>
+            <input type="text" class="form-control" name="figure" id="field_figure"
+                [(ngModel)]="artical.figure" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="manleApp.artical.creatDate" for="field_creatDate">Creat Date</label>
+            <div class="input-group">
+                <input id="field_creatDate" type="text" class="form-control" name="creatDate" ngbDatepicker  #creatDateDp="ngbDatepicker" [(ngModel)]="artical.creatDate"
+                />
+                <span class="input-group-append">
+                    <button type="button" class="btn btn-secondary" (click)="creatDateDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="manleApp.artical.clientUser" for="field_clientUser">Client User</label>
+            <select class="form-control" id="field_clientUser" name="clientUser" [(ngModel)]="artical.clientUserId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="clientUserOption.id" *ngFor="let clientUserOption of clientusers; trackBy: trackClientUserById">{{clientUserOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

@@ -1,0 +1,48 @@
+
+<div *ngIf="clientUser">
+    <h2><span jhiTranslate="manleApp.clientUser.detail.title">Client User</span> {{clientUser.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="manleApp.clientUser.userName">User Name</span></dt>
+        <dd>
+            <span>{{clientUser.userName}}</span>
+        </dd>
+        <dt><span jhiTranslate="manleApp.clientUser.phone">Phone</span></dt>
+        <dd>
+            <span>{{clientUser.phone}}</span>
+        </dd>
+        <dt><span jhiTranslate="manleApp.clientUser.password">Password</span></dt>
+        <dd>
+            <span>{{clientUser.password}}</span>
+        </dd>
+        <dt><span jhiTranslate="manleApp.clientUser.figure">Figure</span></dt>
+        <dd>
+            <span>{{clientUser.figure}}</span>
+        </dd>
+        <dt><span jhiTranslate="manleApp.clientUser.point">Point</span></dt>
+        <dd>
+            <span>{{clientUser.point}}</span>
+        </dd>
+        <dt><span jhiTranslate="manleApp.clientUser.product">Product</span></dt>
+        <dd>
+            <span *ngFor="let product of clientUser.products; let last = last">
+                <a [routerLink]="['/product', product?.id ]">{{product.id}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'client-user/'+ clientUser.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

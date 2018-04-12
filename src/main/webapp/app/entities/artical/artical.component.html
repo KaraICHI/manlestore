@@ -1,0 +1,70 @@
+<div>
+    <h2>
+        <span jhiTranslate="manleApp.artical.home.title">Articals</span>
+        <button class="btn btn-primary float-right jh-create-entity create-artical" [routerLink]="['/', { outlets: { popup: ['artical-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="manleApp.artical.home.createLabel">
+            Create new Artical
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="articals">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="title"><span jhiTranslate="manleApp.artical.title">Title</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="content"><span jhiTranslate="manleApp.artical.content">Content</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="figure"><span jhiTranslate="manleApp.artical.figure">Figure</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="creatDate"><span jhiTranslate="manleApp.artical.creatDate">Creat Date</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="clientUserId"><span jhiTranslate="manleApp.artical.clientUser">Client User</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let artical of articals ;trackBy: trackId">
+                <td><a [routerLink]="['../artical', artical.id ]">{{artical.id}}</a></td>
+                <td>{{artical.title}}</td>
+                <td>{{artical.content}}</td>
+                <td>{{artical.figure}}</td>
+                <td>{{artical.creatDate | date:'mediumDate'}}</td>
+                <td>
+                    <div *ngIf="artical.clientUserId">
+                        <a [routerLink]="['../client-user', artical.clientUserId  ]" >{{artical.clientUserId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../artical', artical.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'artical/'+ artical.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'artical/'+ artical.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

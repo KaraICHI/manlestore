@@ -1,0 +1,12 @@
+{
+    "manleApp": {
+        "OrderStatus" : {
+            "null": "",
+            "WAIT_TO_PAY": "WAIT_TO_PAY",
+            "WAIT_TO_SEND": "WAIT_TO_SEND",
+            "WAIT_TO_TAKE": "WAIT_TO_TAKE",
+            "DONE": "DONE",
+            "WAIT_TO_COMMENT": "WAIT_TO_COMMENT"
+        }
+    }
+}

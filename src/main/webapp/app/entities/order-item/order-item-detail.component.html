@@ -1,0 +1,50 @@
+
+<div *ngIf="orderItem">
+    <h2><span jhiTranslate="manleApp.orderItem.detail.title">Order Item</span> {{orderItem.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="manleApp.orderItem.productName">Product Name</span></dt>
+        <dd>
+            <span>{{orderItem.productName}}</span>
+        </dd>
+        <dt><span jhiTranslate="manleApp.orderItem.productPrice">Product Price</span></dt>
+        <dd>
+            <span>{{orderItem.productPrice}}</span>
+        </dd>
+        <dt><span jhiTranslate="manleApp.orderItem.productQuantity">Product Quantity</span></dt>
+        <dd>
+            <span>{{orderItem.productQuantity}}</span>
+        </dd>
+        <dt><span jhiTranslate="manleApp.orderItem.productIcon">Product Icon</span></dt>
+        <dd>
+            <span>{{orderItem.productIcon}}</span>
+        </dd>
+        <dt><span jhiTranslate="manleApp.orderItem.orderMaster">Order Master</span></dt>
+        <dd>
+            <div *ngIf="orderItem.orderMasterId">
+                <a [routerLink]="['/order-master', orderItem.orderMasterId]">{{orderItem.orderMasterId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="manleApp.orderItem.product">Product</span></dt>
+        <dd>
+            <div *ngIf="orderItem.productId">
+                <a [routerLink]="['/product', orderItem.productId]">{{orderItem.productId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'order-item/'+ orderItem.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,46 @@
+
+<div *ngIf="orderComment">
+    <h2><span jhiTranslate="manleApp.orderComment.detail.title">Order Comment</span> {{orderComment.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="manleApp.orderComment.level">Level</span></dt>
+        <dd>
+            <span>{{orderComment.level}}</span>
+        </dd>
+        <dt><span jhiTranslate="manleApp.orderComment.content">Content</span></dt>
+        <dd>
+            <span>{{orderComment.content}}</span>
+        </dd>
+        <dt><span jhiTranslate="manleApp.orderComment.creatDate">Creat Date</span></dt>
+        <dd>
+            <span>{{orderComment.creatDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="manleApp.orderComment.orderItem">Order Item</span></dt>
+        <dd>
+            <div *ngIf="orderComment.orderItemId">
+                <a [routerLink]="['/order-item', orderComment.orderItemId]">{{orderComment.orderItemId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="manleApp.orderComment.clientUser">Client User</span></dt>
+        <dd>
+            <div *ngIf="orderComment.clientUserId">
+                <a [routerLink]="['/client-user', orderComment.clientUserId]">{{orderComment.clientUserId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'order-comment/'+ orderComment.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

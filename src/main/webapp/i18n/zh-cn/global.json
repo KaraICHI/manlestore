@@ -7,6 +7,18 @@
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "数据",
+                "clientUser": "Client User",
+                "artical": "Artical",
+                "orderComment": "Order Comment",
+                "articalComment": "Artical Comment",
+                "articalCommentReply": "Artical Comment Reply",
+                "commentReply": "Comment Reply",
+                "product": "Product",
+                "category": "Category",
+                "theme": "Theme",
+                "address": "Address",
+                "orderMaster": "Order Master",
+                "orderItem": "Order Item",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

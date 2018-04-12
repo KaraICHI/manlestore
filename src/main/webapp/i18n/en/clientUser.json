@@ -1,0 +1,27 @@
+
+{
+    "manleApp": {
+        "clientUser" : {
+            "home": {
+                "title": "Client Users",
+                "createLabel": "Create a new Client User",
+                "createOrEditLabel": "Create or edit a Client User"
+            },
+            "created": "A new Client User is created with identifier {{ param }}",
+            "updated": "A Client User is updated with identifier {{ param }}",
+            "deleted": "A Client User is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Client User {{ id }}?"
+            },
+            "detail": {
+                "title": "Client User"
+            },
+            "userName": "User Name",
+            "phone": "Phone",
+            "password": "Password",
+            "figure": "Figure",
+            "point": "Point",
+            "product": "Product"
+        }
+    }
+}

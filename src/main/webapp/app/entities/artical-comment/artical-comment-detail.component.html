@@ -1,0 +1,38 @@
+
+<div *ngIf="articalComment">
+    <h2><span jhiTranslate="manleApp.articalComment.detail.title">Artical Comment</span> {{articalComment.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="manleApp.articalComment.content">Content</span></dt>
+        <dd>
+            <span>{{articalComment.content}}</span>
+        </dd>
+        <dt><span jhiTranslate="manleApp.articalComment.artical">Artical</span></dt>
+        <dd>
+            <div *ngIf="articalComment.articalId">
+                <a [routerLink]="['/artical', articalComment.articalId]">{{articalComment.articalId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="manleApp.articalComment.clientUser">Client User</span></dt>
+        <dd>
+            <div *ngIf="articalComment.clientUserId">
+                <a [routerLink]="['/client-user', articalComment.clientUserId]">{{articalComment.clientUserId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'artical-comment/'+ articalComment.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

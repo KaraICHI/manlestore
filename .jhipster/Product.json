@@ -1,0 +1,72 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "category",
+            "otherEntityName": "category",
+            "otherEntityField": "categoryName"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "theme",
+            "otherEntityName": "theme",
+            "otherEntityField": "themeName"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "clientUser",
+            "otherEntityName": "clientUser",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "product"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "productName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "coverPrice",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "originPrice",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "produceDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "period",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "figure",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "brand",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "supply",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "brief",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180408085323",
+    "entityTableName": "product",
+    "dto": "mapstruct",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false
+}

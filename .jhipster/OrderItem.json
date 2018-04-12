@@ -1,0 +1,41 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "orderMaster",
+            "otherEntityName": "orderMaster",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "product",
+            "otherEntityName": "product",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "productName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "productPrice",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "productQuantity",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "productIcon",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180408085328",
+    "entityTableName": "order_item",
+    "dto": "mapstruct",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false
+}
