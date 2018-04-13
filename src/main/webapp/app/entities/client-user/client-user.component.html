@@ -19,7 +19,7 @@
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="userName"><span jhiTranslate="manleApp.clientUser.userName">User Name</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="phone"><span jhiTranslate="manleApp.clientUser.phone">Phone</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="password"><span jhiTranslate="manleApp.clientUser.password">Password</span> <span class="fa fa-sort"></span></th>
+         <!--   <th jhiSortBy="password"><span jhiTranslate="manleApp.clientUser.password">Password</span> <span class="fa fa-sort"></span></th>-->
             <th jhiSortBy="figure"><span jhiTranslate="manleApp.clientUser.figure">Figure</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="point"><span jhiTranslate="manleApp.clientUser.point">Point</span> <span class="fa fa-sort"></span></th>
             <th></th>
@@ -30,7 +30,7 @@
                 <td><a [routerLink]="['../client-user', clientUser.id ]">{{clientUser.id}}</a></td>
                 <td>{{clientUser.userName}}</td>
                 <td>{{clientUser.phone}}</td>
-                <td>{{clientUser.password}}</td>
+               <!-- <td>{{clientUser.password}}</td>-->
                 <td>{{clientUser.figure}}</td>
                 <td>{{clientUser.point}}</td>
                 <td class="text-right">
@@ -41,7 +41,9 @@
                             <span class="fa fa-eye"></span>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                         </button>
-                        <button type="submit"
+
+
+                     <!--   <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'client-user/'+ clientUser.id + '/edit'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
@@ -56,7 +58,7 @@
                                 class="btn btn-danger btn-sm">
                             <span class="fa fa-remove"></span>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
-                        </button>
+                        </button>-->
                     </div>
                 </td>
             </tr>

@@ -144,6 +144,11 @@ public class ProductResource {
             System.out.println("=======path==="+path);
             file.transferTo(new File(path));
             if (productDTO!=null){
+                String filePath = basePath+File.separator+productDTO.getFigure();
+                File oldFile = new File(filePath);
+                if (oldFile.exists()){
+                    oldFile.delete();
+                }
                 productDTO.setFigure(newFileName);
                 productService.save(productDTO);
             }else {

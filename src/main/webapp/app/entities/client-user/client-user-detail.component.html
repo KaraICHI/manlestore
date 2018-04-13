@@ -12,10 +12,10 @@
         <dd>
             <span>{{clientUser.phone}}</span>
         </dd>
-        <dt><span jhiTranslate="manleApp.clientUser.password">Password</span></dt>
+       <!-- <dt><span jhiTranslate="manleApp.clientUser.password">Password</span></dt>
         <dd>
             <span>{{clientUser.password}}</span>
-        </dd>
+        </dd>-->
         <dt><span jhiTranslate="manleApp.clientUser.figure">Figure</span></dt>
         <dd>
             <span>{{clientUser.figure}}</span>
@@ -28,6 +28,12 @@
         <dd>
             <span *ngFor="let product of clientUser.products; let last = last">
                 <a [routerLink]="['/product', product?.id ]">{{product.id}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span  *ngIf="addresses" style="font-style: oblique;">Address</span></dt>
+        <dd>
+            <span *ngFor="let address of addresses; let last = last">
+                <a [routerLink]="['/address', address?.id ]">{{address.address}}</a>{{last ? '' : ', '}}
             </span>
         </dd>
     </dl>

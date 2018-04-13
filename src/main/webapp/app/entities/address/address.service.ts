@@ -37,7 +37,10 @@ export class AddressService {
         return this.http.get<Address[]>(this.resourceUrl, { params: options, observe: 'response' })
             .map((res: HttpResponse<Address[]>) => this.convertArrayResponse(res));
     }
-
+    public queryByClientUserId(id: number): Observable<HttpResponse<Address[]>> {
+        return this.http.get<Address[]>(`${this.resourceUrl}/user/${id}`, { observe: 'response' })
+            .map((res: HttpResponse<Address[]>) => this.convertArrayResponse(res));
+    }
     delete(id: number): Observable<HttpResponse<any>> {
         return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response'});
     }

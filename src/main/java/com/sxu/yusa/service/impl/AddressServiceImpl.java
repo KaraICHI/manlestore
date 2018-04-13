@@ -12,6 +12,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 
 /**
  * Service Implementation for managing Address.
@@ -82,5 +84,11 @@ public class AddressServiceImpl implements AddressService {
     public void delete(Long id) {
         log.debug("Request to delete Address : {}", id);
         addressRepository.delete(id);
+    }
+
+    @Override
+    public List<AddressDTO> findByClientUser(long clientUserId) {
+        List<Address> addressList = addressRepository.findByClientUserId(clientUserId);
+        return addressMapper.toDto(addressList);
     }
 }

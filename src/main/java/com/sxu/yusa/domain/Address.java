@@ -31,8 +31,9 @@ public class Address implements Serializable {
     @Column(name = "phone")
     private String phone;
 
-    @ManyToOne
-    private ClientUser clientUser;
+
+    @Column(name = "client_user_id")
+    private Long clientUserId;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -82,18 +83,7 @@ public class Address implements Serializable {
         this.phone = phone;
     }
 
-    public ClientUser getClientUser() {
-        return clientUser;
-    }
 
-    public Address clientUser(ClientUser clientUser) {
-        this.clientUser = clientUser;
-        return this;
-    }
-
-    public void setClientUser(ClientUser clientUser) {
-        this.clientUser = clientUser;
-    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -124,5 +114,14 @@ public class Address implements Serializable {
             ", address='" + getAddress() + "'" +
             ", phone='" + getPhone() + "'" +
             "}";
+    }
+
+
+    public Long getClientUserId() {
+        return clientUserId;
+    }
+
+    public void setClientUserId(Long clientUserId) {
+        this.clientUserId = clientUserId;
     }
 }

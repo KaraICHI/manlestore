@@ -52,6 +52,7 @@ export class AddressComponent implements OnInit, OnDestroy {
         );
     }
 
+
     reset() {
         this.page = 0;
         this.addresses = [];

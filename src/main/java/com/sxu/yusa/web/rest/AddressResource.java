@@ -123,4 +123,14 @@ public class AddressResource {
         addressService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+    @GetMapping("/addresses/user/{id}")
+    @Timed
+    public ResponseEntity<List<AddressDTO>> getAddressesByClientUserId(@PathVariable Long id) {
+        log.debug("REST request to get a page of Addresses");
+        List<AddressDTO> addressDTOList = addressService.findByClientUser(id);
+        HttpStatus status = addressDTOList != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
+        return new ResponseEntity<>(addressDTOList, status);
+    }
+
+
 }
