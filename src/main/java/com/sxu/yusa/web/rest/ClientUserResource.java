@@ -4,6 +4,7 @@ import com.codahale.metrics.annotation.Timed;
 import com.fasterxml.jackson.databind.util.BeanUtil;
 import com.sxu.yusa.domain.ClientUser;
 import com.sxu.yusa.service.ClientUserService;
+import com.sxu.yusa.service.dto.ProductDTO;
 import com.sxu.yusa.web.rest.errors.BadRequestAlertException;
 import com.sxu.yusa.web.rest.util.HeaderUtil;
 import com.sxu.yusa.web.rest.util.PaginationUtil;
@@ -138,30 +139,38 @@ public class ClientUserResource {
         BeanUtils.copyProperties(clientUserService.login(phone,password),clientUserVO);
         return  clientUserVO;
     }
-  /*  public ClientUserVO uploadFigure(File file,Long id){
+    @PostMapping("/client-users/upload")
+    public ClientUserDTO upload(@RequestParam(required = false) MultipartFile file, Long id, HttpServletRequest request) {
+        String basePath = request.getServletContext().getRealPath("templates/images/avatar");
         ClientUserDTO clientUserDTO = clientUserService.findOne(id);
-
-        ClientUserVO clientUserVO = new ClientUserVO();
-        BeanUtils.copyProperties(clientUserService.save(clientUserDTO),clientUserVO);
-        return  clientUserVO;
-    }*/
-  /*  @PostMapping("/upload")
-    public String upload(@RequestParam(required = false) MultipartFile image,
-                         HttpServletRequest request) {
-        String basePath = request.getServletContext().getRealPath("templates/images/");
         System.out.println(basePath);
         File directory = new File(basePath);
         if (!directory.exists()) {
             directory.mkdirs();
         }
         try {
-            image.transferTo(new File(basePath + image.getName()));
+            String fileName=file.getOriginalFilename();
+            String prefix=fileName.substring(fileName.lastIndexOf(".")+1);
+            String newFileName = System.currentTimeMillis()+"."+prefix;
+            String path = basePath +File.separator+ newFileName;
+            System.out.println("=======path==="+path);
+            file.transferTo(new File(path));
+            if (clientUserDTO!=null){
+                clientUserDTO.setFigure(newFileName);
+                clientUserService.save(clientUserDTO);
+            }else {
+                clientUserDTO = new ClientUserDTO();
+                clientUserDTO.setFigure(newFileName);
+            }
+
+            return clientUserDTO;
+
         } catch (Exception e) {
             // TODO
+            System.out.println(e.getMessage());
+            return clientUserDTO;
         }
-        return "success";
-    }
-*/
 
+    }
 
 }

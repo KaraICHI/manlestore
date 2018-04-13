@@ -48,7 +48,7 @@ export class ProductService {
     upload(postData: any, file: File): Observable<HttpResponse<Product>> {
         console.log("============upload=="+postData+"=="+file);
         const formData: FormData = new FormData();
-        formData.append('file', file, file.name);
+        formData.append('file', file);
         if (postData !== '' && postData !== undefined && postData !== null) {
             for (let property in postData) {
                 if (postData.hasOwnProperty(property)) {
@@ -67,6 +67,7 @@ export class ProductService {
         const body: Product = this.convertItemFromServer(res.body);
         return res.clone({body});
     }
+
 
     private convertArrayResponse(res: HttpResponse<Product[]>): HttpResponse<Product[]> {
         const jsonResponse: Product[] = res.body;

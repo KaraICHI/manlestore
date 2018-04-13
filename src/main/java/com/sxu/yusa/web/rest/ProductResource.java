@@ -143,11 +143,14 @@ public class ProductResource {
             String path = basePath +File.separator+ newFileName;
             System.out.println("=======path==="+path);
             file.transferTo(new File(path));
-            if (productDTO==null){
+            if (productDTO!=null){
+                productDTO.setFigure(newFileName);
+                productService.save(productDTO);
+            }else {
                 productDTO = new ProductDTO();
+                productDTO.setFigure(newFileName);
             }
-            productDTO.setFigure(newFileName);
-            productService.save(productDTO);
+
             return ResponseUtil.wrapOrNotFound(Optional.ofNullable(productDTO));
 
         } catch (Exception e) {

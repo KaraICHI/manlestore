@@ -25,11 +25,11 @@ export class ProductDialogComponent implements OnInit {
     isSaving: boolean;
     imageUrl: any;
     figure: any;
-    imgPath='templates/images/'
+    imgPath='templates/images/';
+
 
 
     categories: Category[];
-
     themes: Theme[];
 
     clientusers: ClientUser[];
@@ -61,17 +61,22 @@ export class ProductDialogComponent implements OnInit {
 
 
 
-     uploadFigure():void{
-         let postData = {id:this.product.id}; // Put your form data variable. This is only example.
-         console.log("=======file==="+this.file);
-         this.productService.upload(postData,this.file).subscribe((res: HttpResponse<Product>) => { this.product = res.body; this.onChange('上传成功')}, (res: HttpErrorResponse) => this.onError(res.message));
-         alert('上传成功');
+     uploadFigure(): void{
+         let postData = {id:this.product.id};
+         if (!this.product.id){
+             postData = {id:-1}
+             console.log('id does not exist');
+         }
+         this.productService.upload(postData,this.file).subscribe((res: HttpResponse<Product>) =>
+         { this.product.figure=res.body.figure;this.onUploadSuccess();}, (res: HttpErrorResponse) =>
+             this.onError(res.message));
+
     }
 
-    onChange(event) :void {
+    onChange(event): void {
         this.file = event.target.files[0];
         const imageUrl = window.URL.createObjectURL(this.file);
-        let sanitizerUrl = this.sanitizer.bypassSecurityTrustUrl(imageUrl);
+        const sanitizerUrl = this.sanitizer.bypassSecurityTrustUrl(imageUrl);
         this.imageUrl = sanitizerUrl;
     }
 
@@ -108,6 +113,9 @@ export class ProductDialogComponent implements OnInit {
 
     private onError(error: any) {
         this.jhiAlertService.error(error.message, null, null);
+    }
+    private onUploadSuccess() {
+        this.jhiAlertService.info('上传成功',null,null);
     }
 
     trackCategoryById(index: number, item: Category) {
