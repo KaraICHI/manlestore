@@ -1,5 +1,6 @@
 package com.sxu.yusa.service.impl;
 
+import com.sxu.yusa.domain.enumeration.OrderStatus;
 import com.sxu.yusa.service.OrderMasterService;
 import com.sxu.yusa.domain.OrderMaster;
 import com.sxu.yusa.repository.OrderMasterRepository;
@@ -11,6 +12,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 
 /**
@@ -83,4 +86,10 @@ public class OrderMasterServiceImpl implements OrderMasterService {
         log.debug("Request to delete OrderMaster : {}", id);
         orderMasterRepository.delete(id);
     }
+
+    @Override
+    public List<OrderMasterDTO> findByClientUserId(Long id, OrderStatus status) {
+        return orderMasterMapper.toDto(orderMasterRepository.findByClientUserIdAndOrderStatus(id,status));
+    }
+
 }

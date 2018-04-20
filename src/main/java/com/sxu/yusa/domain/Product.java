@@ -54,6 +54,12 @@ public class Product implements Serializable {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "stock")
+    private Integer stock;
+
+    @Column(name = "sell")
+    private Integer sell;
+
     @ManyToOne
     private Category category;
 
@@ -290,5 +296,21 @@ public class Product implements Serializable {
             ", brief='" + getBrief() + "'" +
             ", description='" + getDescription() + "'" +
             "}";
+    }
+
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
+    }
+
+    public Integer getSell() {
+        return sell;
+    }
+
+    public void setSell(Integer sell) {
+        this.sell = sell;
     }
 }

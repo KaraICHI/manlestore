@@ -32,6 +32,9 @@ public class Artical implements Serializable {
     @Column(name = "creat_date")
     private LocalDate creatDate;
 
+    @Column(name = "like")
+    private Long like;
+
     @ManyToOne
     private ClientUser clientUser;
 
@@ -139,5 +142,13 @@ public class Artical implements Serializable {
             ", figure='" + getFigure() + "'" +
             ", creatDate='" + getCreatDate() + "'" +
             "}";
+    }
+
+    public Long getLike() {
+        return like;
+    }
+
+    public void setLike(Long like) {
+        this.like = like;
     }
 }

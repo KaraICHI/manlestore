@@ -35,6 +35,10 @@ public class ProductDTO implements Serializable {
 
     private String description;
 
+    private Integer stock;
+
+    private Integer sell;
+
     private Long categoryId;
 
     private String categoryCategoryName;
@@ -199,5 +203,21 @@ public class ProductDTO implements Serializable {
             ", brief='" + getBrief() + "'" +
             ", description='" + getDescription() + "'" +
             "}";
+    }
+
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
+    }
+
+    public Integer getSell() {
+        return sell;
+    }
+
+    public void setSell(Integer sell) {
+        this.sell = sell;
     }
 }

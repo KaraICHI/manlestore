@@ -6,6 +6,7 @@ import com.sxu.yusa.web.rest.errors.BadRequestAlertException;
 import com.sxu.yusa.web.rest.util.HeaderUtil;
 import com.sxu.yusa.web.rest.util.PaginationUtil;
 import com.sxu.yusa.service.dto.ProductDTO;
+import com.sxu.yusa.web.vo.HomeVO;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -164,5 +165,10 @@ public class ProductResource {
             return ResponseUtil.wrapOrNotFound(Optional.ofNullable(productDTO));
         }
 
+    }
+    @GetMapping("/products/home")
+    public ResponseEntity<HomeVO> getHomeInfo(){
+        HomeVO homeVO = productService.getHomeInfo();
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(homeVO));
     }
 }

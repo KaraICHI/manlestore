@@ -22,6 +22,8 @@ public class ArticalDTO implements Serializable {
 
     private LocalDate creatDate;
 
+    private Long like;
+
     private Long clientUserId;
 
     public Long getId() {
@@ -102,5 +104,13 @@ public class ArticalDTO implements Serializable {
             ", figure='" + getFigure() + "'" +
             ", creatDate='" + getCreatDate() + "'" +
             "}";
+    }
+
+    public Long getLike() {
+        return like;
+    }
+
+    public void setLike(Long like) {
+        this.like = like;
     }
 }

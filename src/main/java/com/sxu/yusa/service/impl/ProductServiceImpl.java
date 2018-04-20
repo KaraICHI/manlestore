@@ -1,16 +1,22 @@
 package com.sxu.yusa.service.impl;
 
+import com.sxu.yusa.service.CategoryService;
+import com.sxu.yusa.service.OrderItemService;
 import com.sxu.yusa.service.ProductService;
 import com.sxu.yusa.domain.Product;
 import com.sxu.yusa.repository.ProductRepository;
 import com.sxu.yusa.service.dto.ProductDTO;
 import com.sxu.yusa.service.mapper.ProductMapper;
+import com.sxu.yusa.web.vo.HomeVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 
 /**
@@ -21,6 +27,10 @@ import org.springframework.transaction.annotation.Transactional;
 public class ProductServiceImpl implements ProductService {
 
     private final Logger log = LoggerFactory.getLogger(ProductServiceImpl.class);
+    @Autowired
+    private CategoryService categoryService;
+    @Autowired
+    private OrderItemService orderItemService;
 
     private final ProductRepository productRepository;
 
@@ -82,5 +92,28 @@ public class ProductServiceImpl implements ProductService {
     public void delete(Long id) {
         log.debug("Request to delete Product : {}", id);
         productRepository.delete(id);
+    }
+
+    @Override
+    public List<ProductDTO> findHotProducts() {
+        return productMapper.toDto(productRepository.findAllByOrderBySellDesc());
+    }
+
+    @Override
+    public List<ProductDTO> findRecommendProducts() {
+        return productMapper.toDto(productRepository.findAllByOrderByProduceDateDesc());
+    }
+    public List<ProductDTO> findSeckillProducts(){
+        return productMapper.toDto(productRepository.findAllByOrderByOriginPriceDesc());
+    }
+
+    @Override
+    public HomeVO getHomeInfo() {
+        HomeVO homeVO = new HomeVO();
+        homeVO.setCategoryInfo(categoryService.findAll());
+        homeVO.setHotInfo(this.findHotProducts());
+        homeVO.setRecommendInfo(this.findRecommendProducts());
+        homeVO.setSeckillInfo(this.findSeckillProducts());
+        return homeVO;
     }
 }

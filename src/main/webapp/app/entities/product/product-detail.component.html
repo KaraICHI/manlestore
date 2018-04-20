@@ -4,54 +4,62 @@
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="manleApp.product.figure">Figure</span></dt>
+        <dt><span>商品图</span></dt>
         <dd>
-            <span><img src="{{imgPath+product.figure}}" ></span>
+            <span><img src="{{imgPath+product.figure}}" style="width: 250px;height: 250px"></span>
         </dd>
-        <dt><span jhiTranslate="manleApp.product.productName">Product Name</span></dt>
+        <dt><span>商品名</span></dt>
         <dd>
             <span>{{product.productName}}</span>
         </dd>
-        <dt><span jhiTranslate="manleApp.product.coverPrice">Cover Price</span></dt>
+        <dt><span>现价</span></dt>
         <dd>
             <span>{{product.coverPrice}}</span>
         </dd>
-        <dt><span jhiTranslate="manleApp.product.originPrice">Origin Price</span></dt>
+        <dt><span>已优惠</span></dt>
         <dd>
             <span>{{product.originPrice}}</span>
         </dd>
-        <dt><span jhiTranslate="manleApp.product.produceDate">Produce Date</span></dt>
+        <dt><span>生产日期</span></dt>
         <dd>
             <span>{{product.produceDate | date:'mediumDate'}}</span>
         </dd>
-        <dt><span jhiTranslate="manleApp.product.period">Period</span></dt>
+        <dt><span>保质期</span></dt>
         <dd>
             <span>{{product.period}}</span>
         </dd>
 
-        <dt><span jhiTranslate="manleApp.product.brand">Brand</span></dt>
+        <dt><span>品牌</span></dt>
         <dd>
             <span>{{product.brand}}</span>
         </dd>
-        <dt><span jhiTranslate="manleApp.product.supply">Supply</span></dt>
+        <dt><span>供应地</span></dt>
         <dd>
             <span>{{product.supply}}</span>
         </dd>
-        <dt><span jhiTranslate="manleApp.product.brief">Brief</span></dt>
+        <dt><span>简介</span></dt>
         <dd>
             <span>{{product.brief}}</span>
         </dd>
-        <dt><span jhiTranslate="manleApp.product.description">Description</span></dt>
+        <dt><span>描述</span></dt>
         <dd>
             <span>{{product.description}}</span>
         </dd>
-        <dt><span jhiTranslate="manleApp.product.category">Category</span></dt>
+        <dt><span >库存</span></dt>
+        <dd>
+            <span>{{product.stock}}</span>
+        </dd>
+        <dt><span >销售量</span></dt>
+        <dd>
+            <span>{{product.sell}}</span>
+        </dd>
+        <dt><span>分类</span></dt>
         <dd>
             <div *ngIf="product.categoryId">
                 <a [routerLink]="['/category', product.categoryId]">{{product.categoryCategoryName}}</a>
             </div>
         </dd>
-        <dt><span jhiTranslate="manleApp.product.theme">Theme</span></dt>
+        <dt><span>主题</span></dt>
         <dd>
             <div *ngIf="product.themeId">
                 <a [routerLink]="['/theme', product.themeId]">{{product.themeThemeName}}</a>

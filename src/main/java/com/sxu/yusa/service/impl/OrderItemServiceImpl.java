@@ -12,6 +12,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 
 /**
  * Service Implementation for managing OrderItem.
@@ -82,5 +84,10 @@ public class OrderItemServiceImpl implements OrderItemService {
     public void delete(Long id) {
         log.debug("Request to delete OrderItem : {}", id);
         orderItemRepository.delete(id);
+    }
+
+    @Override
+    public List<OrderItemDTO> findByOrderMaster(long id) {
+        return orderItemMapper.toDto(orderItemRepository.findByOrderMasterId(id));
     }
 }

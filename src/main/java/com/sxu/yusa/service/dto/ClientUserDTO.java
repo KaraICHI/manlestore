@@ -1,6 +1,8 @@
 package com.sxu.yusa.service.dto;
 
 
+import com.sxu.yusa.web.vo.ClientUserVO;
+
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -10,7 +12,7 @@ import java.util.Objects;
 /**
  * A DTO for the ClientUser entity.
  */
-public class ClientUserDTO implements Serializable {
+public class ClientUserDTO extends ClientUserVO implements Serializable {
 
     private Long id;
 

@@ -17,19 +17,14 @@
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
-                <th jhiSortBy="figure"><span jhiTranslate="manleApp.product.figure">图片</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="productName"><span jhiTranslate="manleApp.product.productName">产品名</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="coverPrice"><span jhiTranslate="manleApp.product.coverPrice">价格</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="originPrice"><span jhiTranslate="manleApp.product.originPrice">原价</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="produceDate"><span jhiTranslate="manleApp.product.produceDate">生产日期</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="period"><span jhiTranslate="manleApp.product.period">保质期</span> <span class="fa fa-sort"></span></th>
-
-            <th jhiSortBy="brand"><span jhiTranslate="manleApp.product.brand">品牌</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="supply"><span jhiTranslate="manleApp.product.supply">供应地</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="brief"><span jhiTranslate="manleApp.product.brief">简介</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="description"><span jhiTranslate="manleApp.product.description">描述</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="categoryCategoryName"><span jhiTranslate="manleApp.product.category">类别</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="themeThemeName"><span jhiTranslate="manleApp.product.theme">主题</span> <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="figure"><span >图片</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="productName"><span>产品名</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="coverPrice"><span>价格</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="originPrice"><span>已优惠</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="brand"><span>品牌</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="supply"><span>供应地</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="categoryCategoryName"><span>类别</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="themeThemeName"><span>主题</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
@@ -40,12 +35,12 @@
                 <td>{{product.productName}}</td>
                 <td>{{product.coverPrice}}</td>
                 <td>{{product.originPrice}}</td>
-                <td>{{product.produceDate | date:'mediumDate'}}</td>
-                <td>{{product.period}}</td>
+             <!--   <td>{{product.produceDate | date:'mediumDate'}}</td>-->
+             <!--   <td>{{product.period}}</td>-->
                 <td>{{product.brand}}</td>
                 <td>{{product.supply}}</td>
-                <td>{{product.brief}}</td>
-                <td>{{product.description}}</td>
+              <!--  <td>{{product.brief}}</td>
+                <td>{{product.description}}</td>-->
                 <td>
                     <div *ngIf="product.categoryId">
                         <a [routerLink]="['../category', product.categoryId  ]" >{{product.categoryCategoryName}}</a>

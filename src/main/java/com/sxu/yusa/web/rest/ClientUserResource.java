@@ -134,10 +134,8 @@ public class ClientUserResource {
     }
     @GetMapping("/client-users/login")
     @Timed
-    public ClientUserVO login(@RequestParam("phone") String phone, @RequestParam("password") String password) {
-        ClientUserVO clientUserVO = new ClientUserVO();
-        BeanUtils.copyProperties(clientUserService.login(phone,password),clientUserVO);
-        return  clientUserVO;
+    public ClientUserDTO login(@RequestParam("phone") String phone, @RequestParam("password") String password) {
+        return  clientUserService.login(phone,password);
     }
     @PostMapping("/client-users/upload")
     public ClientUserDTO upload(@RequestParam(required = false) MultipartFile file, Long id, HttpServletRequest request) {
@@ -150,17 +148,17 @@ public class ClientUserResource {
         }
         try {
             String fileName=file.getOriginalFilename();
-            String prefix=fileName.substring(fileName.lastIndexOf(".")+1);
-            String newFileName = System.currentTimeMillis()+"."+prefix;
-            String path = basePath +File.separator+ newFileName;
+
+            System.out.println(file.getName()+"=========");
+            String path = basePath +File.separator+ fileName;
             System.out.println("=======path==="+path);
             file.transferTo(new File(path));
             if (clientUserDTO!=null){
-                clientUserDTO.setFigure(newFileName);
+                clientUserDTO.setFigure(fileName);
                 clientUserService.save(clientUserDTO);
             }else {
                 clientUserDTO = new ClientUserDTO();
-                clientUserDTO.setFigure(newFileName);
+                clientUserDTO.setFigure(fileName);
             }
 
             return clientUserDTO;

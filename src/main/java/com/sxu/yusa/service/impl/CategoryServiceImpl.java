@@ -12,6 +12,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 
 /**
  * Service Implementation for managing Category.
@@ -57,6 +59,11 @@ public class CategoryServiceImpl implements CategoryService {
         log.debug("Request to get all Categories");
         return categoryRepository.findAll(pageable)
             .map(categoryMapper::toDto);
+    }
+
+    @Override
+    public List<CategoryDTO> findAll() {
+        return categoryMapper.toDto(categoryRepository.findAll());
     }
 
     /**

@@ -53,6 +53,10 @@ describe('Product e2e test', () => {
         expect(productDialogPage.getBriefInput()).toMatch('brief');
         productDialogPage.setDescriptionInput('description');
         expect(productDialogPage.getDescriptionInput()).toMatch('description');
+        productDialogPage.setDescriptionInput('stock');
+        expect(productDialogPage.getDescriptionInput()).toMatch('stock');
+        productDialogPage.setDescriptionInput('sell');
+        expect(productDialogPage.getDescriptionInput()).toMatch('sell');
         productDialogPage.categorySelectLastOption();
         productDialogPage.themeSelectLastOption();
         productDialogPage.save();

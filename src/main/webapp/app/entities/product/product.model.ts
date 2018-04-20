@@ -13,6 +13,8 @@ export class Product implements BaseEntity {
         public supply?: string,
         public brief?: string,
         public description?: string,
+        public stock?: number,
+        public sell?: number,
         public categoryCategoryName?: string,
         public categoryId?: number,
         public themeThemeName?: string,

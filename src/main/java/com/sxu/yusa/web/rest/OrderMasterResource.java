@@ -1,6 +1,7 @@
 package com.sxu.yusa.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.sxu.yusa.domain.enumeration.OrderStatus;
 import com.sxu.yusa.service.OrderMasterService;
 import com.sxu.yusa.web.rest.errors.BadRequestAlertException;
 import com.sxu.yusa.web.rest.util.HeaderUtil;
@@ -122,5 +123,14 @@ public class OrderMasterResource {
         log.debug("REST request to delete OrderMaster : {}", id);
         orderMasterService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    }
+
+    @GetMapping("/order-masters/user")
+    @Timed
+    public ResponseEntity<List<OrderMasterDTO>> getOrderMastersByClientUserId(@RequestParam("id") long id,@RequestParam("status") OrderStatus orderStatus) {
+        log.debug("REST request to get ordermasters by userid");
+        List<OrderMasterDTO> orderMasterDTOList = orderMasterService.findByClientUserId(id,orderStatus);
+        HttpStatus status = orderMasterDTOList != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
+        return  new ResponseEntity<>(orderMasterDTOList, status);
     }
 }
