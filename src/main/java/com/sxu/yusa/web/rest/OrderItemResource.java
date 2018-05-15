@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -60,6 +61,26 @@ public class OrderItemResource {
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
+    @PostMapping("/order-items/list")
+    @Timed
+    public ResponseEntity<List<OrderItemDTO>> createOrderItems(@RequestBody List<OrderItemDTO> orderItemDTOS) throws URISyntaxException {
+        List<OrderItemDTO> orderItemDTOList = new ArrayList<>();
+        for (OrderItemDTO orderItemDTO:orderItemDTOS) {
+            log.debug("REST request to save OrderItem : {}", orderItemDTO);
+            if (orderItemDTO.getId() != null) {
+                throw new BadRequestAlertException("A new orderItem cannot already have an ID", ENTITY_NAME, "idexists");
+            }
+            OrderItemDTO result = orderItemService.save(orderItemDTO);
+           orderItemDTOList.add(result);
+        }
+        HttpStatus status = orderItemDTOList != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
+        return  new ResponseEntity<>(orderItemDTOList, status);
+
+
+
+    }
+
+
 
     /**
      * PUT  /order-items : Updates an existing orderItem.

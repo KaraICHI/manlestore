@@ -43,5 +43,5 @@ public interface AddressService {
      */
     void delete(Long id);
 
-    List<AddressDTO> findByClientUser(long clientUserId);
+    AddressDTO findByClientUser(long clientUserId);
 }

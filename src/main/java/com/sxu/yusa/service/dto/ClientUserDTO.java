@@ -18,10 +18,8 @@ public class ClientUserDTO extends ClientUserVO implements Serializable {
 
     private String userName;
 
-    @NotNull
     private String phone;
 
-    @NotNull
     private String password;
 
     private String figure;

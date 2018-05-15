@@ -50,9 +50,6 @@ public class AddressResource {
     @Timed
     public ResponseEntity<AddressDTO> createAddress(@RequestBody AddressDTO addressDTO) throws URISyntaxException {
         log.debug("REST request to save Address : {}", addressDTO);
-        if (addressDTO.getId() != null) {
-            throw new BadRequestAlertException("A new address cannot already have an ID", ENTITY_NAME, "idexists");
-        }
         AddressDTO result = addressService.save(addressDTO);
         return ResponseEntity.created(new URI("/api/addresses/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
@@ -125,11 +122,11 @@ public class AddressResource {
     }
     @GetMapping("/addresses/user/{id}")
     @Timed
-    public ResponseEntity<List<AddressDTO>> getAddressesByClientUserId(@PathVariable Long id) {
+    public ResponseEntity<AddressDTO> getAddressesByClientUserId(@PathVariable Long id) {
         log.debug("REST request to get a page of Addresses");
-        List<AddressDTO> addressDTOList = addressService.findByClientUser(id);
-        HttpStatus status = addressDTOList != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
-        return new ResponseEntity<>(addressDTOList, status);
+        AddressDTO addressDTO = addressService.findByClientUser(id);
+        HttpStatus status = addressDTO != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
+        return new ResponseEntity<>(addressDTO, status);
     }
 
 

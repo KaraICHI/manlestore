@@ -23,4 +23,5 @@ public interface ClientUserRepository extends JpaRepository<ClientUser, Long> {
 
     ClientUser findByPhone(@Param("phone") String phone);
 
+
 }

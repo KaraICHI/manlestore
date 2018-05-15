@@ -2,10 +2,11 @@ package com.sxu.yusa.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.sxu.yusa.service.ArticalService;
+import com.sxu.yusa.service.dto.ArticalDTO;
 import com.sxu.yusa.web.rest.errors.BadRequestAlertException;
 import com.sxu.yusa.web.rest.util.HeaderUtil;
 import com.sxu.yusa.web.rest.util.PaginationUtil;
-import com.sxu.yusa.service.dto.ArticalDTO;
+import com.sxu.yusa.web.vo.ArticalVO;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,10 +16,13 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.net.URI;
 import java.net.URISyntaxException;
-
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -53,7 +57,9 @@ public class ArticalResource {
         if (articalDTO.getId() != null) {
             throw new BadRequestAlertException("A new artical cannot already have an ID", ENTITY_NAME, "idexists");
         }
+        log.error(articalDTO.toString());
         ArticalDTO result = articalService.save(articalDTO);
+
         return ResponseEntity.created(new URI("/api/articals/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -122,6 +128,60 @@ public class ArticalResource {
         log.debug("REST request to delete Artical : {}", id);
         articalService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    }
+
+
+    @PostMapping("/articals/upload")
+    public ArticalDTO upload(@RequestParam(required = false) MultipartFile file, HttpServletRequest request) {
+        String basePath = request.getServletContext().getRealPath("templates/images/article");
+        ArticalDTO articalDTO = new ArticalDTO();
+        System.out.println(basePath);
+        File directory = new File(basePath);
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
+        try {
+            String fileName = file.getOriginalFilename();
+
+            System.out.println(file.getName() + "=========");
+            String path = basePath + File.separator + fileName;
+            System.out.println("=======path===" + path);
+            file.transferTo(new File(path));
+            articalDTO.setFigure(fileName);
+            return articalDTO;
+
+        } catch (Exception e) {
+            // TODO
+            System.out.println(e.getMessage());
+            return articalDTO;
+        }
+
+    }
+    @GetMapping("/articals/new")
+    @Timed
+    public List<ArticalVO> getAllByNew(){
+        log.error("======="+articalService.findAllOrderByDateDesc().get(0));
+        return articalService.findAllOrderByDateDesc();
+    }
+
+    @GetMapping("/articals/hot")
+    @Timed
+    public List<ArticalVO> getAllByHot(){
+        return articalService.findAllOrderByLikeDesc();
+    }
+    @GetMapping("/articals/add-like")
+    @Timed
+    public void addLike(Long id){
+        ArticalDTO articalDTO = articalService.findOne(id);
+        articalDTO.setFavorite(articalDTO.getFavorite()+1);
+        articalService.save(articalDTO);
+    }
+    @GetMapping("/articals/remove-like")
+    @Timed
+    public void removeLike(Long id){
+        ArticalDTO articalDTO = articalService.findOne(id);
+        articalDTO.setFavorite(articalDTO.getFavorite()-1);
+        articalService.save(articalDTO);
     }
 
 

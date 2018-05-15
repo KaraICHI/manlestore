@@ -4,6 +4,7 @@ package com.sxu.yusa.domain;
 import javax.persistence.*;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Objects;
 
 /**
@@ -23,10 +24,10 @@ public class OrderItem implements Serializable {
     private String productName;
 
     @Column(name = "product_price")
-    private Long productPrice;
+    private BigDecimal productPrice;
 
     @Column(name = "product_quantity")
-    private Long productQuantity;
+    private Integer productQuantity;
 
     @Column(name = "product_icon")
     private String productIcon;
@@ -59,29 +60,29 @@ public class OrderItem implements Serializable {
         this.productName = productName;
     }
 
-    public Long getProductPrice() {
+    public BigDecimal getProductPrice() {
         return productPrice;
     }
 
-    public OrderItem productPrice(Long productPrice) {
+    public OrderItem productPrice(BigDecimal productPrice) {
         this.productPrice = productPrice;
         return this;
     }
 
-    public void setProductPrice(Long productPrice) {
+    public void setProductPrice(BigDecimal productPrice) {
         this.productPrice = productPrice;
     }
 
-    public Long getProductQuantity() {
+    public Integer getProductQuantity() {
         return productQuantity;
     }
 
-    public OrderItem productQuantity(Long productQuantity) {
+    public OrderItem productQuantity(Integer productQuantity) {
         this.productQuantity = productQuantity;
         return this;
     }
 
-    public void setProductQuantity(Long productQuantity) {
+    public void setProductQuantity(Integer productQuantity) {
         this.productQuantity = productQuantity;
     }
 

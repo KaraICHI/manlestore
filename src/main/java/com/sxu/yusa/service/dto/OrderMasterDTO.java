@@ -84,34 +84,15 @@ public class OrderMasterDTO implements Serializable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        OrderMasterDTO orderMasterDTO = (OrderMasterDTO) o;
-        if(orderMasterDTO.getId() == null || getId() == null) {
-            return false;
-        }
-        return Objects.equals(getId(), orderMasterDTO.getId());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(getId());
-    }
-
-    @Override
     public String toString() {
         return "OrderMasterDTO{" +
-            "id=" + getId() +
-            ", orderNumber='" + getOrderNumber() + "'" +
-            ", totalPrices=" + getTotalPrices() +
-            ", totalQuanity=" + getTotalQuanity() +
-            ", orderStatus='" + getOrderStatus() + "'" +
-            "}";
+            "id=" + id +
+            ", orderNumber='" + orderNumber + '\'' +
+            ", totalPrices=" + totalPrices +
+            ", totalQuanity=" + totalQuanity +
+            ", orderStatus=" + orderStatus +
+            ", addressId=" + addressId +
+            ", clientUserId=" + clientUserId +
+            '}';
     }
 }

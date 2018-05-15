@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import java.math.BigDecimal;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -171,4 +172,33 @@ public class ProductResource {
         HomeVO homeVO = productService.getHomeInfo();
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(homeVO));
     }
+    @GetMapping("/products/category")
+    public List<ProductDTO> getProductsByCategory(@RequestParam("categoryId") Long categoryId){
+        List<ProductDTO> productDTOList = productService.findAllByCategoryId(categoryId);
+        return productDTOList;
+    }
+    @GetMapping("/products/theme")
+    public List<ProductDTO> getProductsByTheme(@RequestParam("themeId") Long themeId){
+        List<ProductDTO> productDTOList = productService.findAllByThemeId(themeId);
+        return productDTOList;
+    }
+
+    @GetMapping("/products/brand")
+    public List<ProductDTO> getProductsByBrand(@RequestParam("brand") String brand){
+        List<ProductDTO> productDTOList = productService.findAllByBrand(brand);
+        return productDTOList;
+    }
+
+    @GetMapping("/products/supply")
+    public List<ProductDTO> getProductsBySupply(@RequestParam("supply") String supply){
+        List<ProductDTO> productDTOList = productService.findAllBySupply(supply);
+        return productDTOList;
+    }
+    @GetMapping("/products/price")
+    public List<ProductDTO> getProductsByPrice(@RequestParam("minPrice") BigDecimal minPrice,@RequestParam("maxPrice") BigDecimal maxPrice){
+        List<ProductDTO> productDTOList = productService.findAllByPrice(minPrice,maxPrice);
+        return productDTOList;
+    }
+
+
 }

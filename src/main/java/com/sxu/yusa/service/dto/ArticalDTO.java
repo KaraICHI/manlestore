@@ -1,10 +1,10 @@
 package com.sxu.yusa.service.dto;
 
 
-import java.time.LocalDate;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -20,9 +20,10 @@ public class ArticalDTO implements Serializable {
 
     private String figure;
 
-    private LocalDate creatDate;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date creatDate;
 
-    private Long like;
+    private Long favorite;
 
     private Long clientUserId;
 
@@ -58,11 +59,11 @@ public class ArticalDTO implements Serializable {
         this.figure = figure;
     }
 
-    public LocalDate getCreatDate() {
+    public Date getCreatDate() {
         return creatDate;
     }
 
-    public void setCreatDate(LocalDate creatDate) {
+    public void setCreatDate(Date creatDate) {
         this.creatDate = creatDate;
     }
 
@@ -103,14 +104,16 @@ public class ArticalDTO implements Serializable {
             ", content='" + getContent() + "'" +
             ", figure='" + getFigure() + "'" +
             ", creatDate='" + getCreatDate() + "'" +
+            ", favorite='" + getFavorite()+ "'" +
+            ", clientUserId='" + getClientUserId() + "'" +
             "}";
     }
 
-    public Long getLike() {
-        return like;
+    public Long getFavorite() {
+        return favorite;
     }
 
-    public void setLike(Long like) {
-        this.like = like;
+    public void setFavorite(Long favorite) {
+        this.favorite = favorite;
     }
 }

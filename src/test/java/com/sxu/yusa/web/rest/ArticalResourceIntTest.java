@@ -24,8 +24,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 
 import static com.sxu.yusa.web.rest.TestUtil.createFormattingConversionService;
@@ -52,8 +52,8 @@ public class ArticalResourceIntTest {
     private static final String DEFAULT_FIGURE = "AAAAAAAAAA";
     private static final String UPDATED_FIGURE = "BBBBBBBBBB";
 
-    private static final LocalDate DEFAULT_CREAT_DATE = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_CREAT_DATE = LocalDate.now(ZoneId.systemDefault());
+    private static final Date DEFAULT_CREAT_DATE = new Date(0l);
+    private static final Date UPDATED_CREAT_DATE = new Date(System.currentTimeMillis());
 
     @Autowired
     private ArticalRepository articalRepository;

@@ -57,8 +57,9 @@ public class ClientUserResource {
      */
     @PostMapping("/client-users")
     @Timed
-    public ResponseEntity<ClientUserDTO> createClientUser(@Valid @RequestBody ClientUserDTO clientUserDTO) throws URISyntaxException {
+    public ResponseEntity<ClientUserDTO> createClientUser(@RequestBody ClientUserDTO clientUserDTO) throws URISyntaxException {
         log.debug("REST request to save ClientUser : {}", clientUserDTO);
+        log.error(clientUserDTO.toString());
         if (clientUserDTO.getId() != null) {
             throw new BadRequestAlertException("A new clientUser cannot already have an ID", ENTITY_NAME, "idexists");
         }
@@ -79,7 +80,7 @@ public class ClientUserResource {
      */
     @PutMapping("/client-users")
     @Timed
-    public ResponseEntity<ClientUserDTO> updateClientUser(@Valid @RequestBody ClientUserDTO clientUserDTO) throws URISyntaxException {
+    public ResponseEntity<ClientUserDTO> updateClientUser(@RequestBody ClientUserDTO clientUserDTO) throws URISyntaxException {
         log.debug("REST request to update ClientUser : {}", clientUserDTO);
         if (clientUserDTO.getId() == null) {
             return createClientUser(clientUserDTO);

@@ -24,6 +24,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import java.math.BigDecimal;
 import java.util.List;
 
 import static com.sxu.yusa.web.rest.TestUtil.createFormattingConversionService;
@@ -44,11 +45,10 @@ public class OrderItemResourceIntTest {
     private static final String DEFAULT_PRODUCT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_PRODUCT_NAME = "BBBBBBBBBB";
 
-    private static final Long DEFAULT_PRODUCT_PRICE = 1L;
-    private static final Long UPDATED_PRODUCT_PRICE = 2L;
-
-    private static final Long DEFAULT_PRODUCT_QUANTITY = 1L;
-    private static final Long UPDATED_PRODUCT_QUANTITY = 2L;
+    private static final BigDecimal DEFAULT_PRODUCT_PRICE = new BigDecimal(1);
+    private static final BigDecimal UPDATED_PRODUCT_PRICE = new BigDecimal(2);
+    private static final Integer DEFAULT_PRODUCT_QUANTITY = 1;
+    private static final Integer UPDATED_PRODUCT_QUANTITY = 2;
 
     private static final String DEFAULT_PRODUCT_ICON = "AAAAAAAAAA";
     private static final String UPDATED_PRODUCT_ICON = "BBBBBBBBBB";

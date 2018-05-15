@@ -16,6 +16,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -115,5 +116,31 @@ public class ProductServiceImpl implements ProductService {
         homeVO.setRecommendInfo(this.findRecommendProducts());
         homeVO.setSeckillInfo(this.findSeckillProducts());
         return homeVO;
+    }
+
+    @Override
+    public List<ProductDTO> findAllByCategoryId(Long categoryId) {
+        return productMapper.toDto(productRepository.findAllByCategoryId(categoryId));
+    }
+
+
+
+    @Override
+    public List<ProductDTO> findAllByBrand(String brand) {
+        return productMapper.toDto(productRepository.findAllByBrand(brand));
+    }
+
+    @Override
+    public List<ProductDTO> findAllBySupply(String supply) {
+        return productMapper.toDto(productRepository.findAllBySupply(supply));
+    }
+
+    public List<ProductDTO> findAllByPrice(BigDecimal minPrice,BigDecimal maxPrice ){
+        return productMapper.toDto(productRepository.findAllByCoverPriceBetween(minPrice,maxPrice));
+    }
+
+    @Override
+    public List<ProductDTO> findAllByThemeId(Long themeId) {
+        return productMapper.toDto(productRepository.findAllByThemeId(themeId));
     }
 }

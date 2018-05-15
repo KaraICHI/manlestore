@@ -2,9 +2,8 @@ package com.sxu.yusa.domain;
 
 
 import javax.persistence.*;
-
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -30,10 +29,10 @@ public class Artical implements Serializable {
     private String figure;
 
     @Column(name = "creat_date")
-    private LocalDate creatDate;
+    private Date creatDate;
 
-    @Column(name = "like")
-    private Long like;
+    @Column(name = "favorite")
+    private Long favorite;
 
     @ManyToOne
     private ClientUser clientUser;
@@ -86,16 +85,16 @@ public class Artical implements Serializable {
         this.figure = figure;
     }
 
-    public LocalDate getCreatDate() {
+    public Date getCreatDate() {
         return creatDate;
     }
 
-    public Artical creatDate(LocalDate creatDate) {
+    public Artical creatDate(Date creatDate) {
         this.creatDate = creatDate;
         return this;
     }
 
-    public void setCreatDate(LocalDate creatDate) {
+    public void setCreatDate(Date creatDate) {
         this.creatDate = creatDate;
     }
 
@@ -141,14 +140,17 @@ public class Artical implements Serializable {
             ", content='" + getContent() + "'" +
             ", figure='" + getFigure() + "'" +
             ", creatDate='" + getCreatDate() + "'" +
+            ", favorite='" + getFavorite() + "'" +
+            ", clientUserId='" + getClientUser().getId() + "'" +
+
             "}";
     }
 
-    public Long getLike() {
-        return like;
+    public Long getFavorite() {
+        return favorite;
     }
 
-    public void setLike(Long like) {
-        this.like = like;
+    public void setFavorite(Long favorite) {
+        this.favorite = favorite;
     }
 }

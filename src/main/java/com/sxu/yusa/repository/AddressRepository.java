@@ -18,5 +18,5 @@ import java.util.List;
 public interface AddressRepository extends JpaRepository<Address, Long> {
 
     Page<Address> findByClientUserId(Pageable pageable, Long id);
-    List<Address> findByClientUserId( Long id);
+    Address findByClientUserId( Long id);
 }
